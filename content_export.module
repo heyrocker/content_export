@@ -1,0 +1,40 @@
+<?php
+
+/**
+ * Implements hook_help().
+ */
+function content_export_help($path, $arg) {
+  switch ($path) {
+    case 'admin/config/content/export':
+      return t('Export all the published content on your site to files encoded with JSON-LD. These files will be located in the /content directory inside your public files folder.');
+  }
+}
+
+/**
+ * Implements hook_perission().
+ */
+function content_export_hook_permission() {
+  return array(
+    'export content' => array(
+      'title' => t('Export content'),
+      'description' => t('Export content using the Content Export module.'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_menu().
+ */
+function content_export_menu() {
+  $items['admin/config/content/export'] = array(
+    'title' => 'Content Export',
+    'description' => 'Export your site\'s content to the files system.',
+    'access arguments' => array('export content'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('content_export_form'),
+    'file' => 'content_export.admin.inc',
+  );
+
+  return $items;
+}
+

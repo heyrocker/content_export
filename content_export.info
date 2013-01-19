@@ -1,0 +1,5 @@
+name = Content Export
+description = Export selected nodes to JSON-LD
+package = Other
+version = VERSION
+core = 8.x
